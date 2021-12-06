@@ -37,7 +37,12 @@ extension ViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
         cell.textLabel?.text = tasks[indexPath.row]
-        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.textAlignment = .left
+        cell.detailTextLabel?.text = String(indexPath.row)
+        cell.detailTextLabel?.textAlignment = .right
+        cell.detailTextLabel?.isEnabled = true
+        cell.detailTextLabel?.textColor = .black
+        cell.detailTextLabel?.isHidden = false
         return cell
     }
 }
