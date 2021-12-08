@@ -29,20 +29,36 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController : UITableViewDataSource {
+extension ViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
-        cell.textLabel?.text = tasks[indexPath.row]
-        cell.textLabel?.textAlignment = .left
-        cell.detailTextLabel?.text = String(indexPath.row)
-        cell.detailTextLabel?.textAlignment = .right
-        cell.detailTextLabel?.isEnabled = true
-        cell.detailTextLabel?.textColor = .black
-        cell.detailTextLabel?.isHidden = false
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! CustomTableViewCell
+        cell.nameLabel.text = tasks[indexPath.row]
+        cell.ageLabel.text = "\(Int.random(in: 5...95)) Years Old"
+//        cell.textLabel?.text = tasks[indexPath.row]
+//        cell.textLabel?.textAlignment = .left
+//        cell.detailTextLabel?.text = String(indexPath.row)
+//        cell.detailTextLabel?.textAlignment = .right
+//        cell.detailTextLabel?.isEnabled = true
+//        cell.detailTextLabel?.textColor = .black
+//        cell.detailTextLabel?.isHidden = false
+//        cell.detailTextLabel?.sizeToFit()
         return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tasks.remove(at: indexPath.row)
+//        tableView.reloadData()
+//    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipe = UISwipeActionsConfiguration()
+        swipe.performsFirstActionWithFullSwipe = true
+        tasks.remove(at: indexPath.row)
+        tableView.reloadData()
+        return swipe
     }
 }
