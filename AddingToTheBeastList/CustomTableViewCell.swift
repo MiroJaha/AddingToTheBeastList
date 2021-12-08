@@ -11,6 +11,7 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var MYvIEW: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
